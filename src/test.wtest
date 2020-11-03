@@ -1,3 +1,61 @@
 import comidas.*
 import comensales.*
 import cocina.*
+
+
+describe "La parrilla de Rosendo" {
+	
+	/**Comidas */
+	const hamburguesaCarne = new Hamburguesa(pan = casero)
+	
+	const hamburguesaVege  = new HamburguesaVegetariana(pan = masaMadre, legumbre = "garbanzos")
+	
+	const proboleta = new Proboleta(peso = 190, tieneEspecias = true)
+	
+	const asado = new Corte(calidad = 10, peso = 250)
+	const entrania = new Corte(calidad = 7, peso = 200)
+	const chorizo = new Corte(calidad = 8, peso = 50)
+	const parrillada = new Parrillada()
+	
+	/**Comensales */
+	const vegetariano = new Vegetariano(peso = 68500)
+	
+	const popular = new Popular(peso = 85000)
+	
+	const fino = new PaladarFino(peso = 70500)
+	
+	fixture {
+		parrillada.agregarCortes([asado,entrania,chorizo])
+		
+		vegetariano.comer(proboleta)
+		vegetariano.comer(hamburguesaVege)
+		vegetariano.comer(hamburguesaVege)
+		
+		popular.comer(parrillada)
+		
+	} 
+	
+	test "parte1 comidas"{
+		
+		assert.equals(80, hamburguesaCarne.valoracion())
+		
+		assert.equals(122, hamburguesaVege.valoracion())
+		
+		assert.equals(true, proboleta.esEspecial())
+		
+		assert.equals(147, parrillada.valoracion())
+	}
+	
+	
+	
+	test "Parte 2 Comensales" {
+		
+		assert.equals(true, vegetariano.satisfecho())
+		
+		assert.equals(false, popular.satisfecho())
+		
+		assert.equals(true, fino.leAgrada(new Hamburguesa(pan = masaMadre)))
+		
+		assert.equals(false, fino.leAgrada(hamburguesaCarne)
+	}
+}
