@@ -2,7 +2,9 @@ import comidas.*
 import comensales.*
 
 object cosina {
-	var property comidas = []
+	const property comidas = []
+	
+	method cosinarComidas(lista) { comidas.addAll(lista) }
 	
 	method nroCarnivoras() = comidas.count({ c => not c.esAptoVegetariano() })
 	

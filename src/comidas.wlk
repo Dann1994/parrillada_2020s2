@@ -20,7 +20,7 @@ class Proboleta inherits Comida {
 }
 
 class Hamburguesa inherits Comida {
-	var property pan = null
+	const property pan = null
 	
 	override method peso() = 250
 	
@@ -28,7 +28,7 @@ class Hamburguesa inherits Comida {
 }
 
 class HamburguesaVegetariana inherits Hamburguesa {
-	var property legumbre = ""
+	const property legumbre = ""
 	
 	method valoracionPlus() = (2 * legumbre.size()).min(17)
 	

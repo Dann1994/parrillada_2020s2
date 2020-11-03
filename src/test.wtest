@@ -25,6 +25,7 @@ describe "La parrilla de Rosendo" {
 	const fino = new PaladarFino(peso = 70500)
 	
 	fixture {
+		
 		parrillada.agregarCortes([asado,entrania,chorizo])
 		
 		vegetariano.comer(proboleta)
@@ -56,6 +57,6 @@ describe "La parrilla de Rosendo" {
 		
 		assert.equals(true, fino.leAgrada(new Hamburguesa(pan = masaMadre)))
 		
-		assert.equals(false, fino.leAgrada(hamburguesaCarne)
+		assert.equals(false, fino.leAgrada(hamburguesaCarne))
 	}
 }
