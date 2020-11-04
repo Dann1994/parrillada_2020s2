@@ -10,7 +10,7 @@ describe "La parrilla de Rosendo" {
 	
 	const hamburguesaVege  = new HamburguesaVegetariana(pan = masaMadre, legumbre = "garbanzos")
 	
-	const proboleta = new Proboleta(peso = 190, tieneEspecias = true)
+	const provoleta = new Provoleta(peso = 190, tieneEspecias = true)
 	
 	const asado = new Corte(calidad = 10, peso = 250)
 	const entrania = new Corte(calidad = 7, peso = 200)
@@ -25,14 +25,15 @@ describe "La parrilla de Rosendo" {
 	const fino = new PaladarFino(peso = 70500)
 	
 	fixture {
-		
 		parrillada.agregarCortes([asado,entrania,chorizo])
 		
-		vegetariano.comer(proboleta)
+		vegetariano.comer(provoleta)
 		vegetariano.comer(hamburguesaVege)
 		vegetariano.comer(hamburguesaVege)
 		
 		popular.comer(parrillada)
+		
+		cosina.cosinarComidas([hamburguesaCarne, hamburguesaVege, provoleta, parrillada])
 		
 	} 
 	
@@ -42,7 +43,7 @@ describe "La parrilla de Rosendo" {
 		
 		assert.equals(122, hamburguesaVege.valoracion())
 		
-		assert.equals(true, proboleta.esEspecial())
+		assert.equals(true, provoleta.esEspecial())
 		
 		assert.equals(147, parrillada.valoracion())
 	}
@@ -58,5 +59,20 @@ describe "La parrilla de Rosendo" {
 		assert.equals(true, fino.leAgrada(new Hamburguesa(pan = masaMadre)))
 		
 		assert.equals(false, fino.leAgrada(hamburguesaCarne))
+	}
+	
+	test "Parte 3 Cosina" {
+		
+		assert.equals(true, cosina.tieneBuenaOfertaVegetariana())
+		
+		assert.equals(parrillada, cosina.platoFuerteCarnivoro())
+		
+		
+		assert.equals([hamburguesaVege], cosina.comidasQueLeGuastaA(vegetariano))
+		
+		assert.equals([], cosina.comidasQueLeGuastaA(popular))
+		
+		assert.equals([hamburguesaVege, provoleta], cosina.comidasQueLeGuastaA(fino))
+		
 	}
 }

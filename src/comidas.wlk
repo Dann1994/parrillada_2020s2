@@ -8,7 +8,7 @@ class Comida {
 	method esAbundante() = peso > 250
 }
 
-class Proboleta inherits Comida {
+class Provoleta inherits Comida {
 	const property tieneEspecias = null
 	
 	override method valoracion() = if (self.esEspecial()) 120 else 80
